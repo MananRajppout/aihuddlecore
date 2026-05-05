@@ -12,11 +12,15 @@
   <meta property="og:description" content="The proprietary behavioural-intelligence system that powers LoveHuddle.com." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ai-huddle-core.com/" />
-  <meta property="og:image" content="aihuddlecore-transparent.png" />
+  <meta property="og:image" content="aihuddlecore-mark.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Preload hero logo (WebP first, PNG fallback for browsers that need it) -->
+  <link rel="preload" as="image" href="aihuddlecore-mark.webp" type="image/webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="aihuddlecore-header.webp" type="image/webp" />
 
   <script type="application/ld+json">
   {
@@ -99,12 +103,37 @@
     .brand {
       display: inline-flex;
       align-items: center;
+      gap: 12px;
       text-decoration: none;
+      color: var(--ink);
     }
-    .brand img {
-      height: 52px;
-      width: auto;
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
       display: block;
+    }
+    .brand-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: 0.005em;
+      line-height: 1;
+    }
+    .brand-name sup {
+      font-size: 10px;
+      vertical-align: super;
+      color: var(--gold-deep);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      margin-left: 1px;
     }
 
     .cta-pill {
@@ -140,31 +169,44 @@
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 120px 0 110px;
+      padding: 80px 0 96px;
       text-align: center;
     }
 
-    /* very soft warm wash */
+    /* warm radial wash + subtle vignette */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 55% 65% at 50% 40%, rgba(199, 154, 58, 0.08), transparent 70%);
+      background:
+        radial-gradient(ellipse 60% 70% at 50% 35%, rgba(199, 154, 58, 0.14), transparent 65%),
+        radial-gradient(ellipse 40% 30% at 50% 90%, rgba(229, 27, 60, 0.05), transparent 70%);
       pointer-events: none;
     }
     .hero > * { position: relative; }
 
-    /* small gold ornament */
+    .hero-emblem {
+      display: inline-block;
+      margin-bottom: 18px;
+      animation: fadeUp .9s ease .05s both;
+    }
+    .hero-emblem img {
+      height: 150px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 14px 28px rgba(160, 119, 18, 0.22));
+    }
+
     .ornament {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 14px;
-      margin-bottom: 28px;
-      animation: fadeUp .9s ease .05s both;
+      margin-bottom: 18px;
+      animation: fadeUp .9s ease .12s both;
     }
     .ornament .line {
-      width: 56px;
+      width: 48px;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--gold));
     }
@@ -172,8 +214,8 @@
       background: linear-gradient(90deg, var(--gold), transparent);
     }
     .ornament .dot {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 999px;
       background: var(--gold);
       box-shadow: 0 0 0 4px rgba(199, 154, 58, 0.12);
@@ -186,17 +228,17 @@
       font-size: 12px;
       font-weight: 600;
       color: var(--gold-deep);
-      margin-bottom: 28px;
-      animation: fadeUp .9s ease .15s both;
+      margin-bottom: 24px;
+      animation: fadeUp .9s ease .18s both;
     }
 
     h1 {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-weight: 600;
-      font-size: clamp(42px, 6.6vw, 80px);
+      font-size: clamp(40px, 6vw, 72px);
       line-height: 1.06;
       letter-spacing: -0.018em;
-      margin: 0 auto 28px;
+      margin: 0 auto 24px;
       max-width: 16ch;
       color: var(--ink);
       animation: fadeUp .9s ease .25s both;
@@ -208,9 +250,9 @@
     }
 
     .tagline {
-      font-size: clamp(17px, 1.8vw, 20px);
+      font-size: clamp(17px, 1.8vw, 19px);
       color: var(--muted);
-      margin: 0 auto 36px;
+      margin: 0 auto 40px;
       max-width: 600px;
       line-height: 1.6;
       animation: fadeUp .9s ease .35s both;
@@ -224,12 +266,56 @@
     }
     .tagline a:hover { color: var(--gold-deep); }
 
+    /* Credentials strip */
+    .creds {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 14px 28px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(199, 154, 58, 0.22);
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 6px 24px rgba(13, 16, 20, 0.04);
+      animation: fadeUp .9s ease .45s both;
+    }
+    .creds .item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--ink-soft);
+      font-weight: 500;
+      letter-spacing: 0.005em;
+      white-space: nowrap;
+    }
+    .creds .item svg {
+      width: 14px;
+      height: 14px;
+      color: var(--gold-deep);
+      flex-shrink: 0;
+    }
+    .creds .sep {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    @media (max-width: 720px) {
+      .creds { flex-direction: column; gap: 12px; padding: 16px 24px; border-radius: 18px; }
+      .creds .sep { display: none; }
+    }
+
     .hero-rule {
       width: 1px;
-      height: 64px;
-      margin: 8px auto 0;
+      height: 56px;
+      margin: 44px auto 0;
       background: linear-gradient(180deg, var(--gold), transparent);
-      animation: fadeUp .9s ease .5s both;
+      animation: fadeUp .9s ease .55s both;
     }
 
     /* ============ Intro paragraph ============ */
@@ -504,15 +590,21 @@
       transform: translateY(0);
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero-logo, .eyebrow, h1, .tagline, .reveal { animation: none !important; opacity: 1 !important; transform: none !important; transition: none !important; }
+      .hero-emblem, .ornament, .eyebrow, h1, .tagline, .creds, .hero-rule, .reveal {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
     }
 
     @media (max-width: 600px) {
-      .hero { padding: 64px 0 56px; }
-      .hero-logo img { height: 132px; }
+      .hero { padding: 56px 0 64px; }
+      .hero-emblem img { height: 110px; }
       .powers, .visit { padding: 72px 0; }
       .cta-pill { padding: 9px 16px; font-size: 13px; }
-      .brand img { height: 44px; }
+      .brand-mark { width: 30px; height: 30px; }
+      .brand-name { font-size: 17px; }
       .intro { padding-bottom: 56px; }
     }
   </style>
@@ -522,7 +614,13 @@
   <header>
     <div class="wrap header-inner">
       <a class="brand" href="/" aria-label="AI-Huddle-Core home">
-        <img src="aihuddlecore-transparent.png" alt="AI-Huddle-Core" />
+        <span class="brand-mark">
+          <picture>
+            <source srcset="aihuddlecore-header.webp" type="image/webp" />
+            <img src="aihuddlecore-header.png" alt="" width="36" height="29" />
+          </picture>
+        </span>
+        <span class="brand-name">AI-Huddle-Core<sup>&trade;</sup></span>
       </a>
       <a class="cta-pill" href="https://lovehuddle.com" rel="noopener">LoveHuddle.com</a>
     </div>
@@ -532,6 +630,12 @@
 
     <section class="hero">
       <div class="wrap">
+        <div class="hero-emblem">
+          <picture>
+            <source srcset="aihuddlecore-mark.webp" type="image/webp" />
+            <img src="aihuddlecore-mark.png" alt="AI-Huddle-Core emblem" width="600" height="477" fetchpriority="high" decoding="async" />
+          </picture>
+        </div>
         <div class="ornament" aria-hidden="true">
           <span class="line"></span>
           <span class="dot"></span>
@@ -543,6 +647,22 @@
           The proprietary behavioural-intelligence system that powers
           <a href="https://lovehuddle.com" rel="noopener">LoveHuddle.com</a>.
         </p>
+        <div class="creds" aria-label="Key credentials">
+          <span class="item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            18 Months Engineered
+          </span>
+          <span class="sep" aria-hidden="true"></span>
+          <span class="item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z"/></svg>
+            Proprietary System
+          </span>
+          <span class="sep" aria-hidden="true"></span>
+          <span class="item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6l-9-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+            UK Trademark UK00004382522
+          </span>
+        </div>
         <div class="hero-rule" aria-hidden="true"></div>
       </div>
     </section>
@@ -597,7 +717,10 @@
         <h2>Experience LoveHuddle.</h2>
         <a class="visit-link" href="https://lovehuddle.com" rel="noopener">
           <span class="visit-logo">
-            <img src="lovehuddle.png" alt="" />
+            <picture>
+              <source srcset="lovehuddle-mark.webp" type="image/webp" />
+              <img src="lovehuddle-mark.png" alt="" width="600" height="400" loading="lazy" decoding="async" />
+            </picture>
           </span>
           Visit LoveHuddle.com
           <span class="arrow" aria-hidden="true">→</span>
@@ -614,7 +737,12 @@
       <div class="footer-divider"></div>
       <div class="powered-by">
         <span>Powered by</span>
-        <span class="lh-mark"><img src="lovehuddle.png" alt="LoveHuddle" /></span>
+        <span class="lh-mark">
+          <picture>
+            <source srcset="lovehuddle-mark.webp" type="image/webp" />
+            <img src="lovehuddle-mark.png" alt="LoveHuddle" width="600" height="400" loading="lazy" decoding="async" />
+          </picture>
+        </span>
         <a href="https://lovehuddle.com" rel="noopener">LoveHuddle.com</a>
       </div>
     </div>
