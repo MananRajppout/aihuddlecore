@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI-Huddle-Core&trade; — The Intelligence Layer Behind The Calm</title>
+  <meta name="description" content="AI-Huddle-Core is the proprietary behavioural-intelligence system that powers LoveHuddle.com — calm experience management, the Shield Protocol, and human-first flow." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://ai-huddle-core.com/" />
+
+  <meta property="og:title" content="AI-Huddle-Core&trade; — The Intelligence Layer Behind The Calm" />
+  <meta property="og:description" content="The proprietary behavioural-intelligence system that powers LoveHuddle.com." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ai-huddle-core.com/" />
+  <meta property="og:image" content="aihuddlecore-transparent.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AI-Huddle-Core",
+    "applicationCategory": "BehaviorIntelligence",
+    "operatingSystem": "Web",
+    "description": "Proprietary behavioural-intelligence architecture that powers LoveHuddle.com.",
+    "url": "https://ai-huddle-core.com/",
+    "isRelatedTo": {
+      "@type": "WebSite",
+      "name": "LoveHuddle",
+      "url": "https://lovehuddle.com/"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --ink: #0d1014;
+      --ink-soft: #2a2f37;
+      --muted: #5b626d;
+      --line: #ebe7df;
+      --bg: #fbf8f3;          /* warm off-white */
+      --paper: #ffffff;
+      --gold: #c79a3a;
+      --gold-deep: #a07712;
+      --gold-soft: #efe2bf;
+      --love: #e51b3c;        /* lovehuddle red */
+      --shadow-sm: 0 1px 2px rgba(13, 16, 20, 0.04), 0 2px 8px rgba(13, 16, 20, 0.04);
+      --shadow-md: 0 4px 12px rgba(13, 16, 20, 0.06), 0 12px 32px rgba(13, 16, 20, 0.06);
+      --shadow-lg: 0 18px 60px rgba(13, 16, 20, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; }
+
+    .serif {
+      font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ============ Header ============ */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(251, 248, 243, 0.82);
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      border-bottom: 1px solid rgba(13, 16, 20, 0.06);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .brand img {
+      height: 52px;
+      width: auto;
+      display: block;
+    }
+
+    .cta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      padding: 11px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.01em;
+      box-shadow: var(--shadow-sm);
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .cta-pill::after {
+      content: "→";
+      font-size: 16px;
+      transform: translateX(0);
+      transition: transform .18s ease;
+    }
+    .cta-pill:hover {
+      background: #1a1f27;
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+    .cta-pill:hover::after { transform: translateX(3px); }
+
+    /* ============ Hero ============ */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 110px;
+      text-align: center;
+    }
+
+    /* very soft warm wash */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 55% 65% at 50% 40%, rgba(199, 154, 58, 0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .hero > * { position: relative; }
+
+    /* small gold ornament */
+    .ornament {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      animation: fadeUp .9s ease .05s both;
+    }
+    .ornament .line {
+      width: 56px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .ornament .line.right {
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .ornament .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(199, 154, 58, 0.12);
+    }
+
+    .eyebrow {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.42em;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold-deep);
+      margin-bottom: 28px;
+      animation: fadeUp .9s ease .15s both;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      font-size: clamp(42px, 6.6vw, 80px);
+      line-height: 1.06;
+      letter-spacing: -0.018em;
+      margin: 0 auto 28px;
+      max-width: 16ch;
+      color: var(--ink);
+      animation: fadeUp .9s ease .25s both;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--gold-deep);
+      font-weight: 600;
+    }
+
+    .tagline {
+      font-size: clamp(17px, 1.8vw, 20px);
+      color: var(--muted);
+      margin: 0 auto 36px;
+      max-width: 600px;
+      line-height: 1.6;
+      animation: fadeUp .9s ease .35s both;
+    }
+    .tagline a {
+      color: var(--ink);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      transition: color .15s ease;
+    }
+    .tagline a:hover { color: var(--gold-deep); }
+
+    .hero-rule {
+      width: 1px;
+      height: 64px;
+      margin: 8px auto 0;
+      background: linear-gradient(180deg, var(--gold), transparent);
+      animation: fadeUp .9s ease .5s both;
+    }
+
+    /* ============ Intro paragraph ============ */
+    .intro {
+      padding: 32px 0 88px;
+      position: relative;
+    }
+    .intro-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      padding: 0 16px;
+    }
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 120px;
+      line-height: 1;
+      color: var(--gold);
+      opacity: 0.18;
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+    .intro p {
+      font-size: 19px;
+      color: var(--ink-soft);
+      line-height: 1.72;
+      margin: 0;
+      position: relative;
+    }
+
+    /* ============ What It Powers ============ */
+    .powers {
+      padding: 96px 0 104px;
+      background: linear-gradient(180deg, var(--paper) 0%, #faf6ee 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+    .section-head {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .section-head h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(30px, 3.8vw, 42px);
+      letter-spacing: -0.01em;
+      margin: 0 0 10px;
+    }
+    .section-head p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+    }
+    .grid {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .card {
+      position: relative;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 32px 28px 30px;
+      box-shadow: var(--shadow-sm);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-soft), var(--gold), var(--gold-deep));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(199, 154, 58, 0.35);
+    }
+    .card:hover::before { transform: scaleX(1); }
+    .card .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--gold-soft), #fff7e3);
+      color: var(--gold-deep);
+      margin-bottom: 18px;
+      box-shadow: inset 0 0 0 1px rgba(199, 154, 58, 0.25);
+    }
+    .card .icon svg { width: 22px; height: 22px; }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      color: var(--ink);
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    @media (max-width: 820px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============ Visit CTA ============ */
+    .visit {
+      padding: 112px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .visit::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(229, 27, 60, 0.07), transparent 70%);
+      pointer-events: none;
+    }
+    .visit-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .visit h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(28px, 3.6vw, 38px);
+      margin: 0 0 36px;
+      color: var(--ink);
+    }
+    .visit-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 32px 10px 12px;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: 0.005em;
+      box-shadow: var(--shadow-md);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      position: relative;
+    }
+    .visit-link:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(229, 27, 60, 0.25);
+    }
+    .visit-logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 0 1px var(--line);
+      overflow: hidden;
+    }
+    .visit-logo img {
+      width: 78%;
+      height: auto;
+      display: block;
+    }
+    .visit-link .arrow {
+      color: var(--love);
+      font-weight: 700;
+      transition: transform .2s ease;
+    }
+    .visit-link:hover .arrow { transform: translateX(4px); }
+
+    /* ============ Footer ============ */
+    footer {
+      background: var(--ink);
+      color: rgba(255, 255, 255, 0.72);
+      padding: 56px 0 48px;
+      text-align: center;
+      font-size: 14px;
+      position: relative;
+    }
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .footer-brand {
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.005em;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+    .footer-tm {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+    .footer-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.18);
+      margin: 24px auto;
+    }
+    .powered-by {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .powered-by .lh-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .powered-by .lh-mark img {
+      width: 80%;
+      height: auto;
+      display: block;
+    }
+    .powered-by a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      padding-bottom: 1px;
+      transition: border-color .15s ease;
+    }
+    .powered-by a:hover { border-color: var(--gold); }
+
+    /* ============ Animations ============ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-logo, .eyebrow, h1, .tagline, .reveal { animation: none !important; opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 64px 0 56px; }
+      .hero-logo img { height: 132px; }
+      .powers, .visit { padding: 72px 0; }
+      .cta-pill { padding: 9px 16px; font-size: 13px; }
+      .brand img { height: 44px; }
+      .intro { padding-bottom: 56px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap header-inner">
+      <a class="brand" href="/" aria-label="AI-Huddle-Core home">
+        <img src="aihuddlecore-transparent.png" alt="AI-Huddle-Core" />
+      </a>
+      <a class="cta-pill" href="https://lovehuddle.com" rel="noopener">LoveHuddle.com</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="wrap">
+        <div class="ornament" aria-hidden="true">
+          <span class="line"></span>
+          <span class="dot"></span>
+          <span class="line right"></span>
+        </div>
+        <span class="eyebrow">AI-Huddle-Core&trade;</span>
+        <h1>The Intelligence Layer<br/>Behind The <em>Calm</em>.</h1>
+        <p class="tagline">
+          The proprietary behavioural-intelligence system that powers
+          <a href="https://lovehuddle.com" rel="noopener">LoveHuddle.com</a>.
+        </p>
+        <div class="hero-rule" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="intro-inner reveal">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <p>
+          Built over 18 months and refined through thousands of micro-adjustments,
+          AI-Huddle-Core&trade; powers LoveHuddle&rsquo;s calm, safety, and human-first
+          experience. It manages emotional-calm architecture, behavioural safety, and
+          platform flow to keep LoveHuddle consistent, predictable, and pressure-free.
+        </p>
+      </div>
+    </section>
+
+    <section class="powers">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>What It Powers</h2>
+          <p>Three layers working as one.</p>
+        </div>
+        <div class="grid">
+          <div class="card reveal">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a7 7 0 0 0-7 7c0 3 2 5 2 7v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2c0-2 2-4 2-7a7 7 0 0 0-7-7Z"/><path d="M9 18h6"/></svg>
+            </span>
+            <h3>Calm Experience Management</h3>
+            <p>Keeps LoveHuddle emotionally calm and pressure-free.</p>
+          </div>
+          <div class="card reveal">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+            </span>
+            <h3>The Shield Protocol</h3>
+            <p>Proactive behavioural safety and trust.</p>
+          </div>
+          <div class="card reveal">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.6 19c.6-3 3.2-5 6.4-5s5.8 2 6.4 5"/><circle cx="17" cy="7" r="2.4"/><path d="M15.5 13.4c2 .4 3.6 2 4 4.1"/></svg>
+            </span>
+            <h3>Human-First Flow</h3>
+            <p>Ensures LoveHuddle stays human-first, not algorithm-first.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit">
+      <div class="wrap reveal">
+        <div class="visit-eyebrow">Continue to the platform</div>
+        <h2>Experience LoveHuddle.</h2>
+        <a class="visit-link" href="https://lovehuddle.com" rel="noopener">
+          <span class="visit-logo">
+            <img src="lovehuddle.png" alt="" />
+          </span>
+          Visit LoveHuddle.com
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-brand">AI-Huddle-Core&trade; &mdash; Proprietary Behavioural-Intelligence Architecture</div>
+      <div class="footer-tm">Trademark Application: UK00004382522</div>
+      <div class="footer-divider"></div>
+      <div class="powered-by">
+        <span>Powered by</span>
+        <span class="lh-mark"><img src="lovehuddle.png" alt="LoveHuddle" /></span>
+        <a href="https://lovehuddle.com" rel="noopener">LoveHuddle.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal-on-scroll
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      }
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
